@@ -3,13 +3,14 @@ using namespace std;
 int main(){
     //declaring a vector
     vector <int> vec;
-    cout << "Initially Vector size: " << vec.size() << endl;
+    auto size = vec.size();
+    cout << "Initially Vector size: " << size << endl;
 
     //putting data into vector
-    vec.push_back(4);
-    vec.push_back(1);
-    vec.push_back(8);
-    vec.push_back(9);
+    vec.emplace_back(4);
+    vec.emplace_back(1);
+    vec.emplace_back(8);
+    vec.emplace_back(9);
     cout << "After pushing size is: " << vec.size() << endl;
 
     //put out data from vector
@@ -25,11 +26,13 @@ int main(){
     //printing vector
     cout << "Printing the vector" << endl;
     //way - 1
-    for(int i = 0; i < vec.size(); i++)
+    for(auto i = 0; i < size; ++i)
         cout << vec[i] << " "; // just like array printing
     cout << endl;
     //way - 2
-    for(vector <int> :: iterator itr = vec.begin(); itr < vec.end(); itr++)
+    auto begin = vec.begin();
+    auto end = vec.end();
+    for(auto itr = begin; itr < end; ++itr)
         cout << *itr << " "; // iterator behaves like a pointer
     cout << endl;
     //way - 3
@@ -39,7 +42,9 @@ int main(){
 
     //printing in reverse order
     cout << "Printing vector in reverse order" << endl;
-    for(vector <int> :: reverse_iterator itr = vec.rbegin(); itr < vec.rend(); itr++)
+    auto rbegin = vec.rbegin();
+    auto rend = vec.rend();
+    for(auto itr = rbegin; itr < rend; ++itr)
         cout << *itr << " "; // iterator behaves like a pointer
     cout << endl;
 
@@ -53,7 +58,7 @@ int main(){
 
     //swapping two vectors
     vector <int> swap_vec;
-    for(int i = 1; i <= 5; i++)
+    for(auto i = 1; i <= 5; i++)
         swap_vec.push_back(i); // insert 5 elements in swap vector
     swap_vec.swap(vec);
     cout << "Printing the swapped two" << endl;
